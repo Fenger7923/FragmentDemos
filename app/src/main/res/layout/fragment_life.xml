@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.fenger.fragmentdemo.CustomView.PasswordEditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:background="@color/white"
+        app:passwordNumber="6"
+        app:passwordRadius="10dp"
+        app:passwordColor="@color/black"
+        app:divisionLineColor="@color/black"
+        app:divisionLineSize="2dp"
+        app:bgColor="@color/black"
+        app:bgSize="2dp"
+        app:bgCorner="2dp" />
+
+    <com.fenger.fragmentdemo.CustomView.CustomerKeyboard
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
