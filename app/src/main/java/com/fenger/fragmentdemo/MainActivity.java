@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments));
 
         //默认一进来加载的页面
-        currentItem(3);
+        currentItem(0);
         /**
          * 这里有一个问题需要注意
          * 向左滑动的时候，从一开始position就会跳到滑动后的位置，如从2到1，最开始position就变成了1
