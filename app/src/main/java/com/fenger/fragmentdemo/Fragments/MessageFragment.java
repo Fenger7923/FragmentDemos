@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.fenger.fragmentdemo.CustomView.StepView;
+import com.fenger.fragmentdemo.customView.StepView;
 import com.fenger.fragmentdemo.R;
 
 /**

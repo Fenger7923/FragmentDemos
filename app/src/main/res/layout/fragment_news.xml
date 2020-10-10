@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp">
 
-        <com.fenger.fragmentdemo.CustomView.MyViewPager
+        <com.fenger.fragmentdemo.customView.MyViewPager
             android:id="@+id/mViewPager"
             android:layout_width="match_parent"
             android:layout_height="250dp"

@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.fenger.fragmentdemo.Adapter.MyFragmentPagerAdapter
-import com.fenger.fragmentdemo.CustomView.ColorTrackTextView
+import com.fenger.fragmentdemo.adapter.MyFragmentPagerAdapter
+import com.fenger.fragmentdemo.customView.ColorTrackTextView
 import com.fenger.fragmentdemo.Fragments.*
 import com.fenger.fragmentdemo.Permission.PermissionFail
 import com.fenger.fragmentdemo.Permission.PermissionHelper
@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         const val CODE_CALL_PHONE = 0x0011
     }
 
-    lateinit var fragments: List<Fragment>
-    lateinit var rb: Array<ColorTrackTextView>
+    private lateinit var fragments: List<Fragment>
+    private lateinit var rb: Array<ColorTrackTextView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,26 +60,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 // Log.e("fenger", "position --> " + position + " positionOffset --> " + positionOffset);
                 if (positionOffset > 0) {
                     // 获取左边
-                    val left = rb[position];
+                    val left = rb[position]
                     // 设置朝向
-                    left.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT);
+                    left.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT)
                     // 设置进度  positionOffset 是从 0 一直变化到 1 不信可以看打印
-                    left.setProgress(1 - positionOffset);
+                    left.setProgress(1 - positionOffset)
 
                     // 获取右边
-                    val right = rb[position + 1];
-                    right.setDirection(ColorTrackTextView.Direction.Left_TO_RIGHT);
-                    right.setProgress(positionOffset);
+                    val right = rb[position + 1]
+                    right.setDirection(ColorTrackTextView.Direction.LEFT_TO_RIGHT)
+                    right.setProgress(positionOffset)
                 }
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-                // Log.d("fenger", "onPageScrollStateChanged: ");
+                // Log.d("fenger", "onPageScrollStateChanged: ")
                 currentItem(main_tab.currentItem)
             }
 
             override fun onPageSelected(position: Int) {
-                // Log.d("fenger", "onPageSelected: ");
+                // Log.d("fenger", "onPageSelected: ")
             }
 
         })
