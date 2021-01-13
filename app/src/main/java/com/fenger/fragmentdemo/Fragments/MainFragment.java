@@ -1,5 +1,6 @@
 package com.fenger.fragmentdemo.Fragments;
 
+import android.Manifest;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.fenger.fragmentdemo.NoCopySpanEditableFactory;
+import com.fenger.fragmentdemo.Permission.PermissionHelper;
 import com.fenger.fragmentdemo.R;
 import com.fenger.fragmentdemo.SelectionSpanWatcher;
 import com.fenger.fragmentdemo.TestClickableSpan;
@@ -30,6 +32,7 @@ import com.fenger.fragmentdemo.TestClickableSpan;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 import static com.fenger.fragmentdemo.KeyCodeDeleteHelperKt.onDelDown;
 
@@ -82,8 +85,8 @@ public class MainFragment extends Fragment {
             public void onClick(View view) {
 
 //           PermissionHelper.with(getActivity()).requestCode(CODE_CALL_PHONE).requestPermission(new String[] {Manifest.permission.CALL_PHONE}).request();
-//                PermissionHelper.requestPermission(getFragmentManager().findFragmentById(R.id.main_tab),
-//                        CODE_CALL_PHONE, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.CAMERA});
+                PermissionHelper.requestPermission(Objects.requireNonNull(getFragmentManager()).findFragmentById(R.id.main_tab),
+                        CODE_CALL_PHONE, new String[]{Manifest.permission.CALL_PHONE, Manifest.permission.CAMERA});
                 Log.d("fenger", "onClick: 这里是外部的点击事件");
             }
         });

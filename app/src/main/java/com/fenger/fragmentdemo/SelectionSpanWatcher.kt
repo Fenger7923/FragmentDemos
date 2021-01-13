@@ -33,9 +33,7 @@ class SelectionSpanWatcher(private val kClass: ForegroundColorSpan) : SpanWatche
         }
     }
 
-    override fun onSpanRemoved(text: Spannable?, what: Any?, start: Int, end: Int) {
-    }
+    override fun onSpanRemoved(text: Spannable?, what: Any?, start: Int, end: Int) = Unit
 
-    override fun onSpanAdded(text: Spannable?, what: Any?, start: Int, end: Int) {
-    }
+    override fun onSpanAdded(text: Spannable?, what: Any?, start: Int, end: Int) = Unit
 }
