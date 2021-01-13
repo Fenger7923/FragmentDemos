@@ -41,8 +41,6 @@ public class TreeNodesClass {
         preOrderTraveral(node.leftChild);
         preOrderTraveral(node.rightChild);
     }
-
-
 }
 
 

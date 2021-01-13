@@ -1,4 +1,4 @@
-package com.fenger.fragmentdemo.CustomView;
+package com.fenger.fragmentdemo.customView;
 
 import android.content.Context;
 import android.util.AttributeSet;
