@@ -28,10 +28,7 @@ import com.fenger.fragmentdemo.Permission.PermissionHelper;
 import com.fenger.fragmentdemo.R;
 import com.fenger.fragmentdemo.SelectionSpanWatcher;
 import com.fenger.fragmentdemo.TestClickableSpan;
-
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Objects;
 
 import static com.fenger.fragmentdemo.KeyCodeDeleteHelperKt.onDelDown;
