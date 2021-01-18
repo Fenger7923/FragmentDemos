@@ -1,4 +1,4 @@
-package com.fenger.fragmentdemo.Fragments;
+package com.fenger.fragmentdemo.fragments;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

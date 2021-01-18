@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
@@ -18,7 +17,7 @@ import android.view.View
 class LetterSideBar(context: Context) : View(context) {
     private val mPaint: Paint = Paint()
     private val mRePaint: Paint
-    private var currentLetter : String? = null //当前触摸的字母
+    private var currentLetter: String? = null //当前触摸的字母
     private val mLetters = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#")
     private fun sp2px(sp: Int): Float {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), resources.displayMetrics)

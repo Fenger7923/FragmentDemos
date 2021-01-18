@@ -1,4 +1,4 @@
-package com.fenger.fragmentdemo.Fragments;
+package com.fenger.fragmentdemo.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

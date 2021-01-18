@@ -42,8 +42,8 @@ class StepView constructor(context: Context, attrs: AttributeSet) : View(context
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val begin = mBorderWidth / 2 .toFloat()//画笔起始
-        val end = width - mBorderWidth / 2 .toFloat()//画笔终结处
+        val begin = mBorderWidth / 2.toFloat()//画笔起始
+        val end = width - mBorderWidth / 2.toFloat()//画笔终结处
         val rectF = RectF1(begin, begin, end, end) //给个区域//要计算画笔的宽度
         canvas.drawArc(rectF, 135f, 270f, false, mPaint) //画半圆弧//从135度开始扫过270度，计算方式自己想去//
         if (mCurrent == 0) {
