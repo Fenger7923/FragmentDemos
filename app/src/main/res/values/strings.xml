@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FragmentDemo</string>
+    <string name="open_pop">打开这个悬浮窗</string>
 </resources>

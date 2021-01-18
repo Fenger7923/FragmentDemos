@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.fenger.fragmentdemo.adapter.PicturePagerAdapter;
-import com.fenger.fragmentdemo.customView.MyViewPager;
+import com.fenger.fragmentdemo.customview.MyViewPager;
 import com.fenger.fragmentdemo.R;
 
 import java.util.ArrayList;

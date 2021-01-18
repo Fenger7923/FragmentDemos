@@ -13,7 +13,7 @@
         android:id="@+id/text"
         android:visibility="gone"/>
 
-    <com.fenger.fragmentdemo.customView.LetterSideBar
+    <com.fenger.fragmentdemo.customview.LetterSideBar
         android:id="@+id/letter_side_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,8 +1,7 @@
-package com.fenger.fragmentdemo.customView
+package com.fenger.fragmentdemo.customview
 
 import android.content.Context
 import android.text.TextUtils
-import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -15,7 +14,7 @@ import com.fenger.fragmentdemo.R
  * Created by fenger
  * in 2019-12-17
  */
-class CustomerKeyboard constructor(context: Context?) : LinearLayout(context), View.OnClickListener {
+class CustomerKeyboard(context: Context) : LinearLayout(context), View.OnClickListener {
     private var mListener: CustomerKeyboardClickListener? = null
 
     /**

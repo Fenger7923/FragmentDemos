@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.fenger.fragmentdemo.customView.LetterSideBar;
+import com.fenger.fragmentdemo.customview.LetterSideBar;
 import com.fenger.fragmentdemo.R;
 
 /**

@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.fenger.fragmentdemo.customView.CustomerKeyboard;
-import com.fenger.fragmentdemo.customView.PasswordEditText;
+import com.fenger.fragmentdemo.customview.CustomerKeyboard;
+import com.fenger.fragmentdemo.customview.PasswordEditText;
 import com.fenger.fragmentdemo.R;
 
 /**

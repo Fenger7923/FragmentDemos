@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.fenger.fragmentdemo.customView.PasswordEditText
+    <com.fenger.fragmentdemo.customview.PasswordEditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="150px"
@@ -19,7 +19,7 @@
         app:bgSize="2dp"
         app:bgCorner="2dp" />
 
-    <com.fenger.fragmentdemo.customView.CustomerKeyboard
+    <com.fenger.fragmentdemo.customview.CustomerKeyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

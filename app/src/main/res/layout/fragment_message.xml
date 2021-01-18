@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.fenger.fragmentdemo.customView.StepView
+    <com.fenger.fragmentdemo.customview.StepView
         android:id="@+id/step_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

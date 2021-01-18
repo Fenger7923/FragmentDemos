@@ -1,4 +1,4 @@
-package com.fenger.fragmentdemo.customView
+package com.fenger.fragmentdemo.customview
 
 import android.content.Context
 import android.graphics.Canvas

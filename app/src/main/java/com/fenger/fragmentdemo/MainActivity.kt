@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.fenger.fragmentdemo.adapter.MyFragmentPagerAdapter
-import com.fenger.fragmentdemo.customView.ColorTrackTextView
+import com.fenger.fragmentdemo.customview.ColorTrackTextView
 import com.fenger.fragmentdemo.Fragments.*
 import com.fenger.fragmentdemo.Permission.PermissionFail
 import com.fenger.fragmentdemo.Permission.PermissionHelper
