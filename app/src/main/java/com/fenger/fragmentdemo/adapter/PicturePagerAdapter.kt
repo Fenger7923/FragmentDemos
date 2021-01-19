@@ -32,8 +32,6 @@ class PicturePagerAdapter(private val images: List<ImageView>, private val viewP
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        // Log.d("fenger","destroy:"+position);
-        // 把ImageView从ViewPager中移除掉
         viewPager.removeView(images[position % images.size])
     }
 }

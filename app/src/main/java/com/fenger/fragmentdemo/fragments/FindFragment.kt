@@ -18,14 +18,14 @@ import com.fenger.fragmentdemo.customview.LetterSideBar.TouchLetterListener
  * in 2020-01-06
  */
 class FindFragment : Fragment(), TouchLetterListener {
-    private var textView: TextView? = null
+    private lateinit var textView: TextView
     private val mHandler: Handler = object : Handler() {
         override fun handleMessage(msg: Message) {
-            textView!!.visibility = View.GONE
+            textView.visibility = View.GONE
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_find, container, false)
         textView = view.findViewById(R.id.text)
         val letterSideBar: LetterSideBar = view.findViewById(R.id.letter_side_bar)
@@ -34,9 +34,9 @@ class FindFragment : Fragment(), TouchLetterListener {
     }
 
     override fun touch(letter: CharSequence?, isTouch: Boolean) {
-        textView!!.text = letter
+        textView.text = letter
         if (isTouch) {
-            textView!!.visibility = View.VISIBLE
+            textView.visibility = View.VISIBLE
         } else {
             mHandler.sendEmptyMessageDelayed(MSG, 1000)
         }

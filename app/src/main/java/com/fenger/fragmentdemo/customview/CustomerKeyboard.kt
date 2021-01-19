@@ -59,7 +59,7 @@ class CustomerKeyboard(context: Context) : LinearLayout(context), View.OnClickLi
      * 点击键盘的回调监听
      */
     interface CustomerKeyboardClickListener {
-        fun click(number: String?)
+        fun click(number: String)
         fun delete()
     }
 

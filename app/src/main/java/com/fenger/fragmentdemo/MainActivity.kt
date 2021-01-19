@@ -8,10 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.fenger.fragmentdemo.adapter.MyFragmentPagerAdapter
 import com.fenger.fragmentdemo.customview.ColorTrackTextView
-import com.fenger.fragmentdemo.fragments.*
-import com.fenger.fragmentdemo.Permission.PermissionFail
-import com.fenger.fragmentdemo.Permission.PermissionHelper
-import com.fenger.fragmentdemo.Permission.PermissionSuccess
+import com.fenger.fragmentdemo.fragments.FindFragment
+import com.fenger.fragmentdemo.fragments.LifeFragment
+import com.fenger.fragmentdemo.fragments.MainFragment
+import com.fenger.fragmentdemo.fragments.MessageFragment
+import com.fenger.fragmentdemo.fragments.NewsFragment
+import com.fenger.fragmentdemo.permission.PermissionFail
+import com.fenger.fragmentdemo.permission.PermissionHelper
+import com.fenger.fragmentdemo.permission.PermissionSuccess
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -85,7 +89,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         // 在这里处理所有权限是否拿到的问题
         PermissionHelper.onRequestPermissionResult(this, CODE_CALL_PHONE, permissions)
     }
