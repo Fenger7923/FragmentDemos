@@ -1,6 +1,7 @@
 package com.fenger.fragmentdemo.customview
 
 import android.content.Context
+import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.viewpager.widget.ViewPager
 
@@ -9,7 +10,8 @@ import androidx.viewpager.widget.ViewPager
  * Created by fenger
  * in 2020-01-06
  */
-class MyViewPager constructor(context: Context) : ViewPager(context) {
+class MyViewPager constructor(context: Context, attrs: AttributeSet?) : ViewPager(context, attrs) {
+
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         when (ev.action) {
             MotionEvent.ACTION_DOWN -> mListener?.setScroll(0)

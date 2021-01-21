@@ -1,4 +1,4 @@
-package com.fenger.fragmentdemo
+package com.fenger.fragmentdemo.customview
 
 import android.content.Context
 import android.graphics.PixelFormat
@@ -8,7 +8,9 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.fenger.fragmentdemo.FloatingManager
 import com.fenger.fragmentdemo.FloatingManager.Companion.getInstance
+import com.fenger.fragmentdemo.R
 
 /**
  * com.fenger.fragmentdemo

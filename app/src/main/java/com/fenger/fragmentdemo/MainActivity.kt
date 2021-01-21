@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.fenger.fragmentdemo.adapter.MyFragmentPagerAdapter
 import com.fenger.fragmentdemo.customview.ColorTrackTextView
+import com.fenger.fragmentdemo.customview.FloatingView
 import com.fenger.fragmentdemo.fragments.FindFragment
 import com.fenger.fragmentdemo.fragments.LifeFragment
 import com.fenger.fragmentdemo.fragments.MainFragment

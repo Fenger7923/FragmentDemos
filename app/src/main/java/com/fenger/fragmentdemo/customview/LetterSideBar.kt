@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
@@ -14,7 +15,7 @@ import android.view.View
  * Created by fenger
  * in 2020-01-02
  */
-class LetterSideBar(context: Context) : View(context) {
+class LetterSideBar(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private val mPaint: Paint = Paint()
     private val mRePaint: Paint
     private var currentLetter: String? = null //当前触摸的字母

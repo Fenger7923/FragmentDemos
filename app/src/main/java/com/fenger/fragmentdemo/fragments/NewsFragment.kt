@@ -1,6 +1,5 @@
 package com.fenger.fragmentdemo.fragments
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
@@ -12,8 +11,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.fenger.fragmentdemo.adapter.PicturePagerAdapter
 import com.fenger.fragmentdemo.R
+import com.fenger.fragmentdemo.adapter.PicturePagerAdapter
 import com.fenger.fragmentdemo.customview.MyViewPager
 import com.fenger.fragmentdemo.customview.MyViewPager.ScrollingListener
 import java.util.*
@@ -25,9 +24,9 @@ import java.util.*
  */
 class NewsFragment : Fragment(), ScrollingListener {
 
-    private lateinit var mViewPager: MyViewPager
+    private var mViewPager: MyViewPager? = null
     private val mImageList: MutableList<ImageView> = ArrayList() //轮播的图片集合
-    private lateinit var mTvPagerTitle: TextView //标题
+    private var mTvPagerTitle: TextView? = null //标题
     private var previousPosition = 0 //前一个被选中的position
     private var mDots: List<View> = listOf() //下面的小点
     private lateinit var linearLayoutDots: LinearLayout
@@ -48,25 +47,27 @@ class NewsFragment : Fragment(), ScrollingListener {
 
     private val times = 2500 //轮播时间
 
-    private val mHandle: Handler =  Handler().apply {
-            mViewPager.currentItem = mViewPager.currentItem + 1
+    private val handler: Handler =  Handler().apply {
+        mViewPager?.currentItem = mViewPager?.currentItem?: 0 + 1
+        if (mViewPager != null) {
             setScroll(times)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        inflater.inflate(R.layout.fragment_news, container, false)
-        mViewPager = requireView().findViewById(R.id.mViewPager)
-        mTvPagerTitle = requireView().findViewById(R.id.picture_text)
-        linearLayoutDots = requireView().findViewById(R.id.point_container)
+        val view = inflater.inflate(R.layout.fragment_news, container, false)
+        mViewPager = view.findViewById(R.id.view_pager)
+        mTvPagerTitle = view.findViewById(R.id.picture_text)
+        linearLayoutDots = view.findViewById(R.id.point_container)
         init()
-        return requireView()
+        return view
     }
 
     private fun init() {
         addPic2List()
 
         //添加下面的小点
-        mDots = addDots(linearLayoutDots, fromResToDrawable(context, R.drawable.point_normal), imageIds.size)
+        mDots = addDots(linearLayoutDots, fromResToDrawable(R.drawable.point_normal), imageIds.size)
 
         initView() //初始化View，设置适配器
         setFirstLocation() //设置刚打开app时显示的图片和文字
@@ -75,23 +76,23 @@ class NewsFragment : Fragment(), ScrollingListener {
 
     private fun initView() {
 
-        val viewPagerAdapter = PicturePagerAdapter(mImageList, mViewPager)
-        mViewPager.adapter = viewPagerAdapter
-        mViewPager.setScrollingListener(this)
+        val viewPagerAdapter = mViewPager?.let { PicturePagerAdapter(mImageList, it) }
+        mViewPager?.adapter = viewPagerAdapter
+        mViewPager?.setScrollingListener(this)
 
-        mViewPager.setOnPageChangeListener(object : OnPageChangeListener {
+        mViewPager?.setOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
 
             override fun onPageSelected(position: Int) {
                 //伪无限循环，滑到最后一张图片又从新进入第一张图片
                 val newPosition = position % imageIds.size
                 // 把当前选中的点给切换了, 还有描述信息也切换
-                mTvPagerTitle.text = mImageTitles[newPosition] //图片下面设置显示文本
+                mTvPagerTitle?.text = mImageTitles[newPosition] //图片下面设置显示文本
                 //设置轮播点
                 val newDot = mDots[newPosition]
-                newDot.background = fromResToDrawable(context, R.drawable.point_pressed)
+                newDot.background = fromResToDrawable(R.drawable.point_pressed)
                 val preDot = mDots[previousPosition]
-                preDot.background = fromResToDrawable(context, R.drawable.point_normal)
+                preDot.background = fromResToDrawable(R.drawable.point_normal)
 
                 // 把当前的索引赋值给前一个索引变量, 方便下一次再切换.
                 previousPosition = newPosition
@@ -102,28 +103,28 @@ class NewsFragment : Fragment(), ScrollingListener {
     }
 
     private fun setFirstLocation() {
-        mTvPagerTitle.text = mImageTitles[previousPosition]
+        mTvPagerTitle?.text = mImageTitles[previousPosition]
         //把ViewPager设置为默认选中Integer.MAX_VALUE / t2，从十几亿次开始轮播图片，达到无限循环目的;
         val m = Int.MAX_VALUE / 2 % imageIds.size
         val currentPosition = Int.MAX_VALUE / 2 - m
-        mViewPager.currentItem = currentPosition
+        mViewPager?.currentItem = currentPosition
 
         //设置初始的轮播点
         val newDot = mDots[0]
-        newDot.background = fromResToDrawable(context, R.drawable.point_pressed)
+        newDot.background = fromResToDrawable(R.drawable.point_pressed)
     }
 
     /**
      * 资源图片转Drawable
      */
-    fun fromResToDrawable(context: Context?, resId: Int): Drawable? {
-        return context?.resources?.getDrawable(resId)
+    fun fromResToDrawable(resId: Int): Drawable {
+        return resources.getDrawable(resId)
     }
 
     /**
      * 动态添加一个点
      */
-    private fun addDot(linearLayout: LinearLayout?, background: Drawable?): Int {
+    private fun addDot(linearLayout: LinearLayout, background: Drawable?): View {
         val dot = View(context)
         val dotParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
                 , ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -133,18 +134,18 @@ class NewsFragment : Fragment(), ScrollingListener {
         dot.layoutParams = dotParams
         dot.background = background
         dot.id = View.generateViewId()
-        linearLayout?.addView(dot)
-        return dot.id
+        linearLayout.addView(dot)
+        return linearLayout
     }
 
     /**
      * 添加多个轮播小点到横向线性布局
      */
-    private fun addDots(linearLayout: LinearLayout?, background: Drawable?, number: Int): List<View> {
+    private fun addDots(linearLayout: LinearLayout, background: Drawable?, number: Int): List<View> {
         val dots: MutableList<View> = ArrayList()
         for (i in 0 until number) {
             val dotId = addDot(linearLayout, background)
-            dots.add(requireView().findViewById(dotId))
+            dots.add(dotId)
         }
         return dots
     }
@@ -152,11 +153,11 @@ class NewsFragment : Fragment(), ScrollingListener {
     /**
      * 循环播放
      */
-    override fun setScroll(time: Int) {
-        if (time == 0) {
-            mHandle.removeMessages(Companion.MSG)
+    override fun setScroll(scrollTime: Int) {
+        if (scrollTime == 0) {
+            handler.removeMessages(MSG)
         } else {
-            mHandle.sendEmptyMessageDelayed(Companion.MSG, time.toLong())
+            handler.sendEmptyMessageDelayed(MSG, scrollTime.toLong())
         }
     }
 
@@ -179,7 +180,7 @@ class NewsFragment : Fragment(), ScrollingListener {
      * @param isVisibleToUser
      */
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        mHandle.removeMessages(Companion.MSG)
+        handler.removeMessages(MSG)
         if (isVisibleToUser) {
             setScroll(times)
         }

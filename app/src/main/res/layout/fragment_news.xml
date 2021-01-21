@@ -9,7 +9,7 @@
         android:layout_height="500dp">
 
         <com.fenger.fragmentdemo.customview.MyViewPager
-            android:id="@+id/mViewPager"
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             tools:layout_editor_absoluteY="0dp"
@@ -44,7 +44,7 @@
         </LinearLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:layout_below="@+id/mViewPager"
+            android:layout_below="@+id/view_pager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
