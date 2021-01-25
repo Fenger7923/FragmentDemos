@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         main_tab.adapter = MyFragmentPagerAdapter(supportFragmentManager, fragments)
 
         // 默认一进来加载的页面
-        currentItem(0)
+        currentItem(2)
 
         /**
          * 这里有一个问题需要注意
@@ -106,8 +106,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    override fun onClick(v: View?) {
-        when (v!!.id) {
+    override fun onClick(v: View) {
+        when (v.id) {
             R.id.rb_1 -> main_tab.currentItem = 0
             R.id.rb_2 -> main_tab.currentItem = 1
             R.id.rb_3 -> main_tab.currentItem = 2

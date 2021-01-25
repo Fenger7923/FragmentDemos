@@ -28,8 +28,6 @@ class StepView constructor(context: Context, attrs: AttributeSet) : View(context
     private var mCurrent = 0
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        //获取模式  不允许AT_MOST
-
         //获取输入的值
         val width = MeasureSpec.getSize(widthMeasureSpec)
         val height = MeasureSpec.getSize(heightMeasureSpec)
