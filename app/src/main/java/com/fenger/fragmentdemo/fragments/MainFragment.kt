@@ -31,19 +31,14 @@ class MainFragment : Fragment() {
     private lateinit var textView: TextView
     private lateinit var stringBuilder: SpannableStringBuilder
 
+    companion object {
+        private const val CODE_CALL_PHONE = 0x0011
+        private const val SIZE_IN_END = 8
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         textView = view.findViewById(R.id.text)
-        //        // 步骤1：设置需要组合的动画效果
-//        ObjectAnimator translation = ObjectAnimator.ofFloat(textView, "translationX", 0, 300, 0);
-//        // 平移动画
-//        ObjectAnimator rotate = ObjectAnimator.ofFloat(textView, "rotation", 0f, 360f);
-//        // 旋转动画
-//        ObjectAnimator alpha = ObjectAnimator.ofFloat(textView, "alpha", 1f, 0f, 1f);
-//        // 透明度动画
-//        AnimatorSet animSet = new AnimatorSet();
-//        animSet.play(translation).before(alpha);
-//        animSet.start();
         stringBuilder = SpannableStringBuilder("今天是个好日子，花儿为啥这么红")
         stringBuilder.setSpan(TestClickableSpan(), 2, SIZE_IN_END, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         stringBuilder.setSpan(ForegroundColorSpan(Color.RED), 2, SIZE_IN_END, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -62,10 +57,5 @@ class MainFragment : Fragment() {
             Log.d("fenger", "onClick: 这里是外部的点击事件")
         }
         return view
-    }
-
-    companion object {
-        private const val CODE_CALL_PHONE = 0x0011
-        private const val SIZE_IN_END = 8
     }
 }

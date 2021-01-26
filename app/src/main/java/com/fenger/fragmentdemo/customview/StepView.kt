@@ -21,11 +21,29 @@ class StepView constructor(context: Context, attrs: AttributeSet) : View(context
     private var mBorderWidth = 20 //20px,但是需要给的应该是dip
     private var mStepTextSize: Int = 30
     private var mStepTextColor = Color.RED
-    private val mPaint: Paint
-    private val mInnerPaint: Paint
-    private val mTextPaint: Paint
     private var mProgress = 0
     private var mCurrent = 0
+
+    private val mPaint = Paint().apply {
+        isAntiAlias = true //画笔抗锯齿
+        strokeWidth = mBorderWidth.toFloat() //画笔宽度 , 注意：画笔中心点在宽度中间而不是两边
+        color = mOuterColor //画笔颜色
+        style = Paint.Style.STROKE //实心画笔
+        strokeCap = Paint.Cap.ROUND //开始是个圆弧
+    }
+    private val mInnerPaint = Paint().apply {
+        isAntiAlias = true //画笔抗锯齿
+        strokeWidth = mBorderWidth.toFloat() //画笔宽度//注意：画笔中心点在宽度中间而不是两边
+        color = mInnerColor //画笔颜色
+        style = Paint.Style.STROKE //实心画笔
+        strokeCap = Paint.Cap.ROUND //开始是个圆弧
+    }
+    private val mTextPaint = Paint().apply {
+        isAntiAlias = true
+        color = mStepTextColor
+        textSize = mStepTextSize.toFloat()
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         //获取输入的值
@@ -83,28 +101,13 @@ class StepView constructor(context: Context, attrs: AttributeSet) : View(context
      * 3.三个参数的构造方法:这个就很容易理解了，是有指定的style的时候被调用。
      */
     init {
-        val array = context.obtainStyledAttributes(attrs, R.styleable.StepView)
-        mOuterColor = array.getColor(R.styleable.StepView_outerColor, mOuterColor)
-        mInnerColor = array.getColor(R.styleable.StepView_innerColor, mInnerColor)
-        mBorderWidth = array.getDimension(R.styleable.StepView_borderWidth, mBorderWidth.toFloat()).toInt()
-        mStepTextSize = array.getDimension(R.styleable.StepView_stepTextSize, mStepTextSize.toFloat()).toInt()
-        mStepTextColor = array.getColor(R.styleable.StepView_stepTextColor, mStepTextColor)
-        array.recycle() //每次，array用完必须释放一下
-        mPaint = Paint()
-        mPaint.isAntiAlias = true //画笔抗锯齿
-        mPaint.strokeWidth = mBorderWidth.toFloat() //画笔宽度//注意：画笔中心点在宽度中间而不是两边
-        mPaint.color = mOuterColor //画笔颜色
-        mPaint.style = Paint.Style.STROKE //实心画笔
-        mPaint.strokeCap = Paint.Cap.ROUND //开始是个圆弧
-        mInnerPaint = Paint()
-        mInnerPaint.isAntiAlias = true //画笔抗锯齿
-        mInnerPaint.strokeWidth = mBorderWidth.toFloat() //画笔宽度//注意：画笔中心点在宽度中间而不是两边
-        mInnerPaint.color = mInnerColor //画笔颜色
-        mInnerPaint.style = Paint.Style.STROKE //实心画笔
-        mInnerPaint.strokeCap = Paint.Cap.ROUND //开始是个圆弧
-        mTextPaint = Paint()
-        mTextPaint.isAntiAlias = true
-        mTextPaint.color = mStepTextColor
-        mTextPaint.textSize = mStepTextSize.toFloat()
+        context.obtainStyledAttributes(attrs, R.styleable.StepView).let {
+            mOuterColor = it.getColor(R.styleable.StepView_outerColor, mOuterColor)
+            mInnerColor = it.getColor(R.styleable.StepView_innerColor, mInnerColor)
+            mBorderWidth = it.getDimension(R.styleable.StepView_borderWidth, mBorderWidth.toFloat()).toInt()
+            mStepTextSize = it.getDimension(R.styleable.StepView_stepTextSize, mStepTextSize.toFloat()).toInt()
+            mStepTextColor = it.getColor(R.styleable.StepView_stepTextColor, mStepTextColor)
+            it.recycle() //每次，array用完必须释放一下
+        }
     }
 }

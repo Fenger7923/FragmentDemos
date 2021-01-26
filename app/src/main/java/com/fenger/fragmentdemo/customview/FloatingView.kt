@@ -28,21 +28,22 @@ class FloatingView(private val mContext: Context) : FrameLayout(mContext) {
     private lateinit var mParams: WindowManager.LayoutParams
     private val mWindowManager: FloatingManager
     fun show() {
-        mParams = WindowManager.LayoutParams()
-        mParams.gravity = Gravity.TOP or Gravity.START
-        mParams.x = 0
-        mParams.y = 100
-        //总是出现在应用程序窗口之上
-        mParams.type = WindowManager.LayoutParams.TYPE_APPLICATION
-        //设置图片格式，效果为背景透明
-        mParams.format = PixelFormat.RGBA_8888
-        mParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
-                WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR or
-                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-        mParams.width = LayoutParams.WRAP_CONTENT
-        mParams.height = LayoutParams.WRAP_CONTENT
+        mParams = WindowManager.LayoutParams().apply {
+            gravity = Gravity.TOP or Gravity.START
+            x = 0
+            y = 100
+            //总是出现在应用程序窗口之上
+            type = WindowManager.LayoutParams.TYPE_APPLICATION
+            //设置图片格式，效果为背景透明
+            format = PixelFormat.RGBA_8888
+            flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR or
+                    WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+            width = LayoutParams.WRAP_CONTENT
+            height = LayoutParams.WRAP_CONTENT
+        }
         mWindowManager.addView(mView, mParams)
     }
 

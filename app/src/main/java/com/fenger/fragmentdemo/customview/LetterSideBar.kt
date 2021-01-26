@@ -16,13 +16,19 @@ import android.view.View
  * in 2020-01-02
  */
 class LetterSideBar(context: Context, attrs: AttributeSet?) : View(context, attrs) {
-    private val mPaint: Paint = Paint()
-    private val mRePaint: Paint
-    private var currentLetter: String? = null //当前触摸的字母
-    private val mLetters = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#")
-    private fun sp2px(sp: Int): Float {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), resources.displayMetrics)
+    private val mPaint: Paint = Paint().apply {
+        isAntiAlias = true
+        //自定义属性，颜色，大小
+        textSize = sp2px(13)
+        color = Color.BLUE
     }
+    private val mRePaint: Paint = Paint().apply {
+        isAntiAlias = true
+        textSize = sp2px(12)
+        color = Color.RED
+    }
+    private val mLetters = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#")
+    private var currentLetter: String? = null //当前触摸的字母
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -77,6 +83,10 @@ class LetterSideBar(context: Context, attrs: AttributeSet?) : View(context, attr
         return true
     }
 
+    private fun sp2px(sp: Int): Float {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp.toFloat(), resources.displayMetrics)
+    }
+
     private var mListener: TouchLetterListener? = null
     fun setMyOnTouchListener(listener: TouchLetterListener?) {
         mListener = listener
@@ -84,17 +94,5 @@ class LetterSideBar(context: Context, attrs: AttributeSet?) : View(context, attr
 
     interface TouchLetterListener {
         fun touch(letter: CharSequence?, isTouch: Boolean)
-    }
-
-    init {
-        mPaint.isAntiAlias = true
-
-        //自定义属性，颜色，大小
-        mPaint.textSize = sp2px(13)
-        mPaint.color = Color.BLUE
-        mRePaint = Paint()
-        mRePaint.isAntiAlias = true
-        mRePaint.textSize = sp2px(12)
-        mRePaint.color = Color.RED
     }
 }

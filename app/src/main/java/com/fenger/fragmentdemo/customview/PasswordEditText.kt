@@ -53,17 +53,20 @@ class PasswordEditText constructor(context: Context, attrs: AttributeSet) : AppC
      * 初始化属性
      */
     private fun initAttributeSet(context: Context, attrs: AttributeSet?) {
-        val array = context.obtainStyledAttributes(attrs, R.styleable.PasswordEditText)
-        // 获取大小
-        mDivisionLineSize = array.getDimension(R.styleable.PasswordEditText_divisionLineSize, dip2px(mDivisionLineSize).toFloat()).toInt()
-        mPasswordRadius = array.getDimension(R.styleable.PasswordEditText_passwordRadius, dip2px(mPasswordRadius).toFloat()).toInt()
-        mBgSize = array.getDimension(R.styleable.PasswordEditText_bgSize, dip2px(mBgSize).toFloat()).toInt()
-        mBgCorner = array.getDimension(R.styleable.PasswordEditText_bgCorner, 0f).toInt()
-        // 获取颜色
-        mBgColor = array.getColor(R.styleable.PasswordEditText_bgColor, mBgColor)
-        mDivisionLineColor = array.getColor(R.styleable.PasswordEditText_divisionLineColor, mDivisionLineColor)
-        mPasswordColor = array.getColor(R.styleable.PasswordEditText_passwordColor, mDivisionLineColor)
-        array.recycle()
+        context.obtainStyledAttributes(attrs, R.styleable.PasswordEditText).let {
+            // 获取大小
+            mDivisionLineSize = it.getDimension(R.styleable.PasswordEditText_divisionLineSize,
+                    dip2px(mDivisionLineSize).toFloat()).toInt()
+            mPasswordRadius = it.getDimension(R.styleable.PasswordEditText_passwordRadius,
+                    dip2px(mPasswordRadius).toFloat()).toInt()
+            mBgSize = it.getDimension(R.styleable.PasswordEditText_bgSize, dip2px(mBgSize).toFloat()).toInt()
+            mBgCorner = it.getDimension(R.styleable.PasswordEditText_bgCorner, 0f).toInt()
+            // 获取颜色
+            mBgColor = it.getColor(R.styleable.PasswordEditText_bgColor, mBgColor)
+            mDivisionLineColor = it.getColor(R.styleable.PasswordEditText_divisionLineColor, mDivisionLineColor)
+            mPasswordColor = it.getColor(R.styleable.PasswordEditText_passwordColor, mDivisionLineColor)
+            it.recycle()
+        }
     }
 
     /**

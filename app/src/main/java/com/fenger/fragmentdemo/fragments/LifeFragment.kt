@@ -26,6 +26,7 @@ class LifeFragment : Fragment(), CustomerKeyboardClickListener, PasswordFullList
         val view = inflater.inflate(R.layout.fragment_life, container, false)
         mPasswordEditText = view.findViewById(R.id.password)
         mCustomerKeyboard = view.findViewById(R.id.keyboard)
+
         mCustomerKeyboard.setOnCustomerKeyboardClickListener(this)
         mPasswordEditText.setOnPasswordFullListener(this)
         mPasswordEditText.isEnabled = false

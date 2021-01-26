@@ -131,15 +131,17 @@ class NewsFragment : Fragment(), ScrollingListener {
     /**
      * 动态添加一个点
      */
-    private fun addDot(linearLayout: LinearLayout, background: Drawable?): View {
-        val dot = View(context)
-        val dotParams = LinearLayout.LayoutParams(20, 20)
-        dotParams.width = 20
-        dotParams.height = 20
-        dotParams.setMargins(20, 5, 0, 0)
-        dot.layoutParams = dotParams
-        dot.background = background
-        dot.id = View.generateViewId()
+    private fun addDot(linearLayout: LinearLayout, drawable: Drawable?): View {
+        val dotParams = LinearLayout.LayoutParams(20, 20).apply {
+            width = 20
+            height = 20
+            setMargins(20, 5, 0, 0)
+        }
+        val dot = View(context).apply {
+            layoutParams = dotParams
+            background = drawable
+            id = View.generateViewId()
+        }
         linearLayout.addView(dot)
         return dot
     }
@@ -177,19 +179,4 @@ class NewsFragment : Fragment(), ScrollingListener {
             mImageList.add(iv)
         }
     }
-
-    /**
-     * 在整个FragmentPagerAdapter里面每次可见和不可见变换时都会调用这个方法决定是否可见
-     * 在这里使用可见度来决定是否开始轮播，并且避免被外层viewpager影响
-     * 每次开始论轮播之前去掉之前的所有轮播（好像可以直接用，不需要把这个可见拿出来干活了）
-     *
-     * @param isVisibleToUser
-     */
-//    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-//        handler.removeMessages(MSG)
-//        if (isVisibleToUser) {
-//            setScroll(times)
-//        }
-//        super.setUserVisibleHint(isVisibleToUser)
-//    }
 }
