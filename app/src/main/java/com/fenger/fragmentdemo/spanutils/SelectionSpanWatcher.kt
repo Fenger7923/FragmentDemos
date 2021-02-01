@@ -1,11 +1,10 @@
-package com.fenger.fragmentdemo
+package com.fenger.fragmentdemo.spanutils
 
 import android.text.Selection
 import android.text.SpanWatcher
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
-import java.lang.Math.abs
-import kotlin.reflect.KClass
+import kotlin.math.abs
 
 class SelectionSpanWatcher(private val kClass: ForegroundColorSpan) : SpanWatcher {
 

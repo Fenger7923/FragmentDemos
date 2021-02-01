@@ -41,7 +41,7 @@ class LifeFragment : Fragment(), CustomerKeyboardClickListener, PasswordFullList
         mPasswordEditText.deleteLastPassword()
     }
 
-    override fun PasswordFull() {
+    override fun passwordFull() {
         Toast.makeText(context, "密码填充完毕：" + mPasswordEditText.text, Toast.LENGTH_SHORT).show()
     }
 }

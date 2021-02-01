@@ -14,5 +14,4 @@
         app:outerColor="@color/Pink"
         app:stepTextColor="@color/Pink"
         app:stepTextSize="30sp" />
-
 </LinearLayout>

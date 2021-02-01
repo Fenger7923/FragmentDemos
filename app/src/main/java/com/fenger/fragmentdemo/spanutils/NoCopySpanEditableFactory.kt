@@ -1,4 +1,4 @@
-package com.fenger.fragmentdemo
+package com.fenger.fragmentdemo.spanutils
 
 import android.text.Editable
 import android.text.NoCopySpan

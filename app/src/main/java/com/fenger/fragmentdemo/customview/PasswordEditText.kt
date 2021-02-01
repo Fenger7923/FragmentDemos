@@ -94,7 +94,7 @@ class PasswordEditText constructor(context: Context, attrs: AttributeSet) : AppC
         // 绘制密码
         drawHidePassword(canvas)
         if (text?.length ?: 0 >= mPasswordNumber) {
-            mListener?.PasswordFull()
+            mListener?.passwordFull()
         }
     }
 
@@ -174,7 +174,7 @@ class PasswordEditText constructor(context: Context, attrs: AttributeSet) : AppC
      * 点击键盘的回调监听
      */
     interface PasswordFullListener {
-        fun PasswordFull()
+        fun passwordFull()
     }
 
     init {

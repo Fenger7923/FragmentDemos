@@ -1,4 +1,22 @@
 <resources>
-    <string name="app_name">FragmentDemo</string>
-    <string name="open_pop">打开这个悬浮窗</string>
+    <string name="app_name">A Terrify APP</string>
+
+    <string name="main_tab">首页</string>
+    <string name="find_tab">发现</string>
+    <string name="news_tab">新鲜</string>
+    <string name="message_tab">消息</string>
+    <string name="life_tab">生活</string>
+
+    <string name="button_num_1">1</string>
+    <string name="button_num_2">2</string>
+    <string name="button_num_3">3</string>
+    <string name="button_num_4">4</string>
+    <string name="button_num_5">5</string>
+    <string name="button_num_6">6</string>
+    <string name="button_num_7">7</string>
+    <string name="button_num_8">8</string>
+    <string name="button_num_9">9</string>
+    <string name="button_num_0">0</string>
+    <string name="delete">删除</string>
+
 </resources>

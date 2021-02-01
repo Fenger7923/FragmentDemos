@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.fenger.fragmentdemo.adapter.MyFragmentPagerAdapter
 import com.fenger.fragmentdemo.customview.ColorTrackTextView
-import com.fenger.fragmentdemo.customview.FloatingView
 import com.fenger.fragmentdemo.fragments.FindFragment
 import com.fenger.fragmentdemo.fragments.LifeFragment
 import com.fenger.fragmentdemo.fragments.MainFragment
@@ -39,11 +38,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rb_3.setOnClickListener(this)
         rb_4.setOnClickListener(this)
         rb_5.setOnClickListener(this)
-
-        button_test.setOnClickListener {
-            val floatingView = FloatingView(this)
-            floatingView.show()
-        }
 
         initViewPager()
     }
