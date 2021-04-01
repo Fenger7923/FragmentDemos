@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.fenger.fragmentdemo.R
@@ -88,7 +89,9 @@ class NewsFragment : Fragment(), ScrollingListener {
         mViewPager?.adapter = viewPagerAdapter
         mViewPager?.setScrollingListener(this)
 
-        mViewPager?.setOnPageChangeListener(object : OnPageChangeListener {
+        mViewPager?.addOnPageChangeListener(object : OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) = Unit
+
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
 
             override fun onPageSelected(position: Int) {
@@ -105,8 +108,6 @@ class NewsFragment : Fragment(), ScrollingListener {
                 // 把当前的索引赋值给前一个索引变量, 方便下一次再切换.
                 previousPosition = newPosition
             }
-
-            override fun onPageScrollStateChanged(state: Int) = Unit
         })
     }
 
@@ -124,8 +125,8 @@ class NewsFragment : Fragment(), ScrollingListener {
     /**
      * 资源图片转Drawable
      */
-    private fun fromResToDrawable(resId: Int): Drawable {
-        return resources.getDrawable(resId)
+    private fun fromResToDrawable(resId: Int): Drawable? {
+          return  ResourcesCompat.getDrawable(resources, resId, null)
     }
 
     /**
