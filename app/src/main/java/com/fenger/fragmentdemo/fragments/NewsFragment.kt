@@ -35,35 +35,40 @@ class NewsFragment : Fragment(), ScrollingListener {
 
     // 在values中创建了pager_image_ids.xml文件，并定义了4张轮播图对应的id，用于点击事件
     private val imageIds = intArrayOf(
-            R.drawable.pager_image1,
-            R.drawable.pager_image2,
-            R.drawable.pager_image3,
-            R.drawable.pager_image1)
+        R.drawable.pager_image1,
+        R.drawable.pager_image2,
+        R.drawable.pager_image3,
+        R.drawable.pager_image1
+    )
 
     //标题内容的集合
     private val mImageTitles = arrayOf(
-            "这是一个好看的gakki",
-            "这是一个优美的gakki",
-            "这是一个快乐的gakki",
-            "这是一个萌萌的gakki")
+        "这是一个好看的gakki",
+        "这是一个优美的gakki",
+        "这是一个快乐的gakki",
+        "这是一个萌萌的gakki"
+    )
 
     private val times = 2500 //轮播时间
 
-    private val handler: Handler = object : Handler() {
-        override fun handleMessage(msg: Message?) {
-            Log.d("fenger", "handler start")
-            if (mViewPager != null) {
-                mViewPager!!.currentItem = mViewPager!!.currentItem  + 1
-                setScroll(times)
-            }
+    private val handler: Handler = Handler {
+        Log.d("fenger", "handler start")
+        if (mViewPager != null) {
+            mViewPager!!.currentItem = mViewPager!!.currentItem + 1
+            setScroll(times)
         }
+        return@Handler true
     }
 
     companion object {
         private const val MSG = 0x0011
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_news, container, false)
         mViewPager = view.findViewById(R.id.mViewPager)
         mTvPagerTitle = view.findViewById(R.id.picture_text)
@@ -92,7 +97,11 @@ class NewsFragment : Fragment(), ScrollingListener {
         mViewPager?.addOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) = Unit
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) = Unit
 
             override fun onPageSelected(position: Int) {
                 //伪无限循环，滑到最后一张图片又从新进入第一张图片
@@ -126,7 +135,7 @@ class NewsFragment : Fragment(), ScrollingListener {
      * 资源图片转Drawable
      */
     private fun fromResToDrawable(resId: Int): Drawable? {
-          return  ResourcesCompat.getDrawable(resources, resId, null)
+        return ResourcesCompat.getDrawable(resources, resId, null)
     }
 
     /**
@@ -150,7 +159,11 @@ class NewsFragment : Fragment(), ScrollingListener {
     /**
      * 添加多个轮播小点到横向线性布局
      */
-    private fun addDots(linearLayout: LinearLayout, background: Drawable?, number: Int): List<View>? {
+    private fun addDots(
+        linearLayout: LinearLayout,
+        background: Drawable?,
+        number: Int
+    ): List<View> {
         val dots: ArrayList<View> = ArrayList()
         for (i in 0 until number) {
             val dotId = addDot(linearLayout, background)
