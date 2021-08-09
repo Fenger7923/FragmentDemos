@@ -3,7 +3,7 @@ package com.fenger.fragmentdemo.fragments
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
-import android.os.Message
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -51,7 +51,7 @@ class NewsFragment : Fragment(), ScrollingListener {
 
     private val times = 2500 //轮播时间
 
-    private val handler: Handler = Handler {
+    private val handler: Handler = Handler(Looper.getMainLooper()) {
         Log.d("fenger", "handler start")
         if (mViewPager != null) {
             mViewPager!!.currentItem = mViewPager!!.currentItem + 1
