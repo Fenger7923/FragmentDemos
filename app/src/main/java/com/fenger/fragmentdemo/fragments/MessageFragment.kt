@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.fenger.fragmentdemo.R
 import com.fenger.fragmentdemo.customview.StepView
+import com.fenger.fragmentdemo.spanutils.NotificationUtils
 
 /**
  * com.fenger.fragmentdemo.Fragments
@@ -31,6 +32,10 @@ class MessageFragment : Fragment() {
             stepView.setCurrent(current.toInt())
         }
         valueAnimator.start()
+
+        stepView.setOnClickListener {
+            NotificationUtils.showNotification("内容", 0, 0, 0)
+        }
 
         return view
     }
