@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.pow
+import kotlin.math.sin
 import kotlin.math.sqrt
 
 /**
@@ -28,7 +29,18 @@ class CanvasView: View {
         defStyleAttr
     )
 
-    private val number =  -300..1000
+    private val number = 0..3000
+
+    private var moveX: Float = 160f
+    private var moveY: Float = 160f
+
+    private val waveWidth = 100f
+    private val waveHeight = 100f
+
+    private val pointSize = 11 // 控制点的间隔像素， 量越大点数越稀疏
+    private val pointXYSpace = 20 // 距离坐标轴最近的点的距离， 越大图像距离坐标轴越远
+    private val pi = Math.PI / 180
+    private val sinRate = 0.6 // sin图像的x前系数
 
     private val paint = Paint().apply {
         color = Color.RED
@@ -51,11 +63,51 @@ class CanvasView: View {
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.translate(200f,1500f)
-        canvas.scale(1f,-1f)
+        canvas.save()
+        canvas.translate(0f, measuredHeight.toFloat() / 2)
+        canvas.scale(1f, -1f)
 
+        // 坐标轴
         canvas.drawLine(-10000f, 0f, 10000f, 0f, xyLine)
-        canvas.drawLine(0f,-10000f,  0f,10000f,  xyLine)
+        canvas.drawLine(0f, -10000f, 0f, 10000f, xyLine)
+//        drawDemo(canvas)
+
+//        drawQuz(canvas)
+//        drawWave(canvas)
+        drawSin(canvas)
+
+    }
+
+    private fun drawSin(canvas: Canvas) {
+        val pointList = arrayListOf<PointF>()
+        // 正向移动，每13个像素画一个点，避免点数太密集
+        number.forEach { t ->
+            val point = PointF()
+            if (t % pointSize == 0) {
+                point.x = t.toFloat()
+                point.y = (sin(pi * t * sinRate) * 100).toFloat()
+                if (point.y >= pointXYSpace || point.y <= -pointXYSpace) {
+                    pointList.add(point)
+                    canvas.drawPoint(point.x, point.y, paint)
+                }
+            }
+        }
+
+        // 反向移动，每13个像素画一个点，避免点数太密集
+        number.forEach { t ->
+            val point = PointF()
+            if (t % pointSize == 0) {
+                point.x = t.toFloat()
+                point.y = - (sin(pi * t * sinRate) * 100).toFloat()
+                if (point.y >= pointXYSpace || point.y <= -pointXYSpace) {
+                    pointList.add(point)
+                    canvas.drawPoint(point.x, point.y, paint)
+                }
+            }
+        }
+    }
+
+    private fun drawDemo(canvas: Canvas) {
         val pointList = arrayListOf<PointF>()
         number.forEach { t ->
             val point = PointF()
@@ -71,26 +123,28 @@ class CanvasView: View {
             val pointDown = PointF()
             point.x = t.toFloat()
             pointDown.x = t.toFloat()
-            point.y = sqrt(160.0.pow(2.0).toFloat() - ((point.x - 10).toDouble()).pow(2.0)).toFloat() + 10
-            pointDown.y = -sqrt(160.0.pow(2.0).toFloat() - ((pointDown.x - 10).toDouble()).pow(2.0)).toFloat() + 10
+            point.y =
+                sqrt(160.0.pow(2.0).toFloat() - ((point.x - 10).toDouble()).pow(2.0)).toFloat() + 10
+            pointDown.y = -sqrt(
+                160.0.pow(2.0).toFloat() - ((pointDown.x - 10).toDouble()).pow(2.0)
+            ).toFloat() + 10
             canvas.drawPoint(point.x, point.y, demoPaint)
             canvas.drawPoint(pointDown.x, pointDown.y, demoPaint)
         }
-
-        drawQuz(canvas)
     }
 
-    private var moveX: Float = 160f
-    private var moveY: Float = 160f
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
-            MotionEvent.ACTION_DOWN,MotionEvent.ACTION_MOVE -> {
+            MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
                 //在控制点附近范围内部,进行移动
-                Log.e("x=", "onTouchEvent: (x,y)"+(event.x - width / 2).toInt()+":"+(-(event.y - height / 2)).toInt())
+                Log.e(
+                    "x=",
+                    "onTouchEvent: (x,y)" + (event.x).toInt() + ":" + ((height - event.y).toInt())
+                )
                 //将手势坐标转换为屏幕坐标
-                moveX = event.x - width / 2
-                moveY = -(event.y - height / 2)
+                moveX = event.x
+                moveY = height - event.y
                 invalidate()
             }
         }
@@ -112,5 +166,15 @@ class CanvasView: View {
         val quePath = Path()
         quePath.quadTo(moveX, moveY, 400f, 0f)
         canvas.drawPath(quePath, paint)
+    }
+
+    private fun drawWave(canvas: Canvas) {
+        val wavePath = Path()
+        wavePath.moveTo(0f, 0f)
+        wavePath.quadTo(waveWidth, waveHeight, waveWidth * 2, 0f)
+        wavePath.quadTo(waveWidth * 3, waveHeight, waveWidth * 4, 0f)
+        wavePath.quadTo(waveWidth * 5, waveHeight, waveWidth * 6, 0f)
+        wavePath.quadTo(waveWidth * 7, waveHeight, waveWidth * 8, 0f)
+        canvas.drawPath(wavePath, paint)
     }
 }
